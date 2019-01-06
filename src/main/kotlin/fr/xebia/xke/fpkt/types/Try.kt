@@ -30,34 +30,28 @@ sealed class DomainError(val message: String, val cause: Throwable) {
 }
 
 fun main() {
-  try {
-    val categories = getCategories()
-    // ...
-  } catch (e: NoConnectionException) {
-    println(e.message)
-  } catch (e: AuthorizationException) {
-    println(e.message)
-  }
-
-  val something = Try { getCategories() }
+  val categoriesTry = Try { getCategories() }
     .toEither()
     .mapLeft {
       DomainError.NoConnectionError("Failed to fetch categories", it)
     }
 
-  val list = when (something) {
+  val categories = when (categoriesTry) {
     is Either.Left -> {
-      println(something.a.message)  // Envoie des logs, traitement de l'erreur pour un client, etc.
+      println(categoriesTry.a.message)  // Envoie des logs, traitement de l'erreur pour un client, etc.
       emptyList()
     }
-    is Either.Right -> something.b
+    is Either.Right -> categoriesTry.b
   }
 
+  println(categories)
+
   // Autre façon de faire
-  val list2: List<String> = something.fold({ println(it.message); emptyList() }, { it })
+  val categories2: List<String> =
+    categoriesTry.fold(
+      { println(it.message); emptyList() },
+      { it }
+    )
 
-  println(list)
-  println(list2)
+  println(categories2)
 }
-
-

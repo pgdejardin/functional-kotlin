@@ -18,6 +18,7 @@ fun chain(s: String): Either<Exception, String> = parse(s).flatMap { reciprocal(
 // Either Style
 fun main() {
   val x = chain("5")
+
   val value = when (x) {
     is Either.Left -> when (x.a) {
       is NumberFormatException -> "Not a number!"

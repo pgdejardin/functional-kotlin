@@ -2,7 +2,7 @@ theme: Plain Jane
 slidenumbers: true
 autoscale: true
 
-## Functional __Kotlin__
+## Funktional __Kotlin__
 
 ---
 
@@ -11,7 +11,7 @@ autoscale: true
 
 ## Agenda
 
-- FP?
+- Functional Programming
 - Arrow
 - Types
 - Effects
@@ -45,6 +45,7 @@ no mutation or side effects
 ![75%](https://avatars2.githubusercontent.com/u/29458023?v=4&s=200)
 
 - Library for __Typed__ Functional Programming in __Kotlin__
+- created by __47 Degrees__
 - Inspired by __Cats__ and __ScalaZ__ from Scala ecosystem
 - lots of modules
 - `v0.8.2` (31/12/18)
